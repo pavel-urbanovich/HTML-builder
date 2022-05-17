@@ -2,9 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const {stdin, stdout} = process;
 
+fs.writeFile(path.join(__dirname, 'text.txt'),'', (error) => {
+  if (error) return console.error(error.message);
+});
+
 stdout.write('Уважаемый студент, введите Ваше имя\n');
 stdin.on('data',(data) => {
   const name = data.toString().slice(0, -2);
+  
   create(data);
   if (name === 'exit') {
     process.exit();
